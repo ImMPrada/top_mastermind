@@ -1,6 +1,7 @@
 class Game
   H1_FONT = TTY::Font.new(:starwars)
   H3_FONT = TTY::Font.new(:straight)
+  TITLE = 'MASTERMIND'.freeze
 
   def initialize
     @player1 = nil
@@ -10,9 +11,9 @@ class Game
   end
 
   def setup_game
-    puts H1_FONT.write('MASTERMIND').cyan
+    print_head
     setup_player1
-    puts H1_FONT.write('MASTERMIND').cyan
+    print_head
     setup_player2
 
     change_rols
@@ -21,12 +22,16 @@ class Game
   def change_rols
     change_encrypter
     change_hacker
+
+    print_title
+    print_rols
   end
 
   private
 
   def setup_player1
     puts H3_FONT.write('PLAYER 1:').yellow
+    puts "\n"
     puts 'Please enter your name:'.yellow
     @player1 = Player.new(gets.chomp)
     @player1.setup
@@ -34,7 +39,8 @@ class Game
 
   def setup_player2
     puts H3_FONT.write('PLAYER 2:').yellow
-    puts 'Please enter your opponent\'s name:'.yellow
+    puts "\n"
+    puts 'Please enter your name:'.yellow
     @player2 = Player.new(gets.chomp)
     @player2.setup
   end
@@ -57,5 +63,27 @@ class Game
       @hacker = @player2
       @player2.change_rol(:hacker)
     end
+  end
+
+  def print_title
+    puts H1_FONT.write(TITLE).cyan
+  end
+
+  def print_head
+    print_title
+    puts '--------------------------------------------'.yellow
+    puts 'Welcome to Mastermind!'.yellow
+    puts 'Remember:'.yellow
+    puts "- Player1 wi'll be initial encrypter".yellow
+    puts "- you'll need PIN to reveal encrypted code".yellow
+    puts "\n"
+  end
+
+  def print_rols
+    puts '--------------------------------------------'.yellow
+    puts 'ROLES:'.yellow
+    puts "Player1: #{@player1.rol}".yellow
+    puts "Player2: #{@player2.rol}".yellow
+    puts '--------------------------------------------'.yellow
   end
 end
