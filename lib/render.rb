@@ -4,6 +4,7 @@ class Render
   TITLE = 'MASTERMIND'.freeze
 
   def print_title
+    system 'clear'
     puts H1_FONT.write(TITLE).cyan
   end
 
@@ -26,8 +27,8 @@ class Render
   def print_roles(player1, player2)
     puts '--------------------------------------------'.yellow
     puts 'ROLES:'.yellow
-    puts "#{player1.name}: #{player1.rol}".yellow
-    puts "#{player2.name}: #{player2.rol}".yellow
+    puts "#{player1.name} -- #{player1.rol}".yellow
+    puts "#{player2.name} -- #{player2.rol}".yellow
     puts '--------------------------------------------'.yellow
   end
 
