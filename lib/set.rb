@@ -17,16 +17,21 @@ class Set
     @render.print_title if @target_code
     @render.print_roles(@player1, @player2)
     @board.print_blank_board
+
+    run_set_loop
   end
 
   def run_set_loop
+    @guess_code = nil
+    try_guess
+
+    @turn += 1
   end
 
   private
 
-  def try_guess(guess)
-    @guess = guess
-
+  def try_guess
+    @guess_code = set_code
   end
 
   def set_code
