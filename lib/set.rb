@@ -13,28 +13,38 @@ class Set
   end
 
   def start
-    code_setted_up = setup_code
-    puts code_setted_up
-    # @board.print_board
+    @target_code = set_code
+    @render.print_title if @target_code
+    @render.print_roles(@player1, @player2)
+    @board.print_blank_board
+  end
+
+  def run_set_loop
   end
 
   private
 
-  def setup_code
+  def try_guess(guess)
+    @guess = guess
+
+  end
+
+  def set_code
     @render.ask_for_code(@hacker.name)
-    @code = gets.chomp.upcase
-    check = check_code(@code)
+    code = gets.chomp.upcase
+    check = check_code(code)
 
     unless check[:status_ok]
       @render.render_error_message(check[:message])
       gets.chomp
-      setup_code
+      set_code
     end
 
-    @render.render_code(@code)
-    setup_code unless @render.confirm
+    @render.render_code(code)
+    code_confirmed = @render.confirm
+    set_code unless code_confirmed
 
-    true
+    code
   end
 
   def check_code(code)

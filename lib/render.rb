@@ -30,6 +30,7 @@ class Render
     puts "#{player1.name} -- #{player1.rol}".yellow
     puts "#{player2.name} -- #{player2.rol}".yellow
     puts '--------------------------------------------'.yellow
+    puts "\n"
   end
 
   def ask_for_code(name)
@@ -56,6 +57,10 @@ class Render
     puts 'Is this correct? (y/n)'.yellow
     answer = gets.chomp.downcase
     answer == 'y'
+  end
+
+  def print_board(board)
+    board.each { |line| puts line }
   end
 
   private
