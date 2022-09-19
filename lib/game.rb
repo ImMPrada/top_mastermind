@@ -14,7 +14,13 @@ class Game
     setup_player1
     puts H1_FONT.write('MASTERMIND').cyan
     setup_player2
-    puts H1_FONT.write('MASTERMIND').cyan
+
+    change_rols
+  end
+
+  def change_rols
+    change_encrypter
+    change_hacker
   end
 
   private
@@ -31,5 +37,25 @@ class Game
     puts 'Please enter your opponent\'s name:'.yellow
     @player2 = Player.new(gets.chomp)
     @player2.setup
+  end
+
+  def change_encrypter
+    if @encrypter == @player1
+      @encrypter = @player2
+      @player2.change_rol(:encrypter)
+    else
+      @encrypter = @player1
+      @player1.change_rol(:encrypter)
+    end
+  end
+
+  def change_hacker
+    if @hacker == @player2
+      @hacker = @player1
+      @player1.change_rol(:hacker)
+    else
+      @hacker = @player2
+      @player2.change_rol(:hacker)
+    end
   end
 end
