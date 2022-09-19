@@ -30,6 +30,12 @@ class Game
   def new_set
     @current_set = Set.new(@player1, @player2)
     @sets << @current_set
+
+    @current_set.start
+  end
+
+  def start_game
+    
   end
 
   private
