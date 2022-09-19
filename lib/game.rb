@@ -29,13 +29,14 @@ class Game
 
   def new_set
     @current_set = Set.new(@player1, @player2)
+    @current_set.set_roles(@encrypter, @hacker)
     @sets << @current_set
 
-    @current_set.start
+    start_game
   end
 
   def start_game
-    
+    @current_set.start
   end
 
   private
