@@ -44,12 +44,25 @@ class Render
     puts(code_colors.join(' '))
   end
 
+  def render_error_message(message)
+    puts '-----ERROR-----'.red
+    puts message.red
+    puts 'press enter to continue'.red
+    puts '---------------'.red
+  end
+
+  def confirm
+    puts 'Is this correct? (y/n)'.yellow
+    answer = gets.chomp.downcase
+    answer == 'y'
+  end
+
   private
 
   def transpile_color(used_color)
-    return 'O'.red if used_color == 'R'
-    return 'O'.green if used_color == 'G'
-    return 'O'.blue if used_color == 'B'
-    return 'O'.yellow if used_color == 'Y'
+    return 'O'.light_red if used_color == 'R'
+    return 'O'.light_green if used_color == 'G'
+    return 'O'.light_blue if used_color == 'B'
+    return 'O'.light_yellow if used_color == 'Y'
   end
 end
