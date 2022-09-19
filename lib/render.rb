@@ -18,17 +18,22 @@ class Render
     puts "\n"
   end
 
-  def print_player_setup_instructions(player_caption)
+  def print_name_question(player_caption)
     puts H3_FONT.write("#{player_caption}:").yellow
     puts "\n"
     puts 'Please enter your name:'.yellow
   end
 
+  def print_pin_question
+    puts "\n"
+    puts 'Please enter your PIN:'.yellow
+  end
+
   def print_roles(player1, player2)
     puts '--------------------------------------------'.yellow
     puts 'ROLES:'.yellow
-    puts "#{player1.name} -- #{player1.rol}".yellow
-    puts "#{player2.name} -- #{player2.rol}".yellow
+    puts "#{player1.name} -- #{player1.rol}".light_green
+    puts "#{player2.name} -- #{player2.rol}".light_green
     puts '--------------------------------------------'.yellow
     puts "\n"
   end
