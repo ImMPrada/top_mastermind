@@ -1,6 +1,6 @@
 class Game
-  @@h1_font = TTY::Font.new(:starwars)
-  @@h3_font = TTY::Font.new(:straight)
+  H1_FONT = TTY::Font.new(:starwars)
+  H3_FONT = TTY::Font.new(:straight)
 
   def initialize
     @player1 = nil
@@ -10,22 +10,24 @@ class Game
   end
 
   def setup_game
-    puts @@h1_font.write('MASTERMIND').cyan
+    puts H1_FONT.write('MASTERMIND').cyan
     setup_player1
+    puts H1_FONT.write('MASTERMIND').cyan
     setup_player2
+    puts H1_FONT.write('MASTERMIND').cyan
   end
 
   private
 
   def setup_player1
-    puts @@h3_font.write('PLAYER 1:').yellow
+    puts H3_FONT.write('PLAYER 1:').yellow
     puts 'Please enter your name:'.yellow
     @player1 = Player.new(gets.chomp)
     @player1.setup
   end
 
   def setup_player2
-    puts @@h3_font.write('PLAYER 2:').yellow
+    puts H3_FONT.write('PLAYER 2:').yellow
     puts 'Please enter your opponent\'s name:'.yellow
     @player2 = Player.new(gets.chomp)
     @player2.setup
