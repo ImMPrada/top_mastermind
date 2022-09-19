@@ -1,4 +1,6 @@
 class Board
+  BLANK_LINE = 'O O O O O  ---  * * * * *'.freeze
+
   def initialize
     print_board
   end
@@ -6,6 +8,6 @@ class Board
   private
 
   def print_board
-    puts 'Hello from Board initialize'
+    12.times { puts BLANK_LINE }
   end
 end
