@@ -2,12 +2,11 @@ class Board
   BLANK_LINE = 'O O O O O  ---  · · · · ·'.freeze
 
   def initialize
-    print_board
+    @board = 12.times.map { BLANK_LINE }
   end
-
-  private
 
   def print_board
-    12.times { puts BLANK_LINE }
+    @board.each { |line| puts line }
   end
+  private
 end
