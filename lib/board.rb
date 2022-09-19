@@ -1,5 +1,5 @@
 class Board
-  BLANK_LINE = 'O O O O O  ---  * * * * *'.freeze
+  BLANK_LINE = 'O O O O O  ---  · · · · ·'.freeze
 
   def initialize
     print_board
