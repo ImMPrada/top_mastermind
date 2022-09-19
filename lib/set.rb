@@ -32,6 +32,18 @@ class Set
 
   def try_guess
     @guess_code = set_code
+    check_result = check_guess
+    @board.update_board(transpile_code(@guess_code), check_result)
+  end
+
+  def check_guess
+    success_code = %w[· · · · ·]
+
+    @target_code.split('').each_with_index do |letter, index|
+      success_code[index] = '+'.green if letter == @guess_code[index]
+    end
+
+    success_code.join(' ')
   end
 
   def set_code
@@ -45,7 +57,7 @@ class Set
       set_code
     end
 
-    @render.render_code(code)
+    @render.render_code(transpile_code(code))
     code_confirmed = @render.confirm
     set_code unless code_confirmed
 
@@ -57,5 +69,19 @@ class Set
     return { message: error_message, status_ok: false } unless code.size == 5 && code.match?(/[RGBY]{5}/)
 
     { message: '', status_ok: true }
+  end
+
+  def transpile_code(code)
+    code_arr = code.split('')
+    code_colors = code_arr.map { |color| transpile_color(color) }
+
+    code_colors.join(' ')
+  end
+
+  def transpile_color(used_color)
+    return 'O'.light_red if used_color == 'R'
+    return 'O'.light_green if used_color == 'G'
+    return 'O'.light_blue if used_color == 'B'
+    return 'O'.light_yellow if used_color == 'Y'
   end
 end

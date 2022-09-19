@@ -45,10 +45,7 @@ class Render
   end
 
   def render_code(code)
-    code_arr = code.split('')
-    code_colors = code_arr.map { |color| transpile_color(color) }
-
-    puts(code_colors.join(' '))
+    puts(code)
   end
 
   def render_error_message(message)
@@ -69,11 +66,4 @@ class Render
   end
 
   private
-
-  def transpile_color(used_color)
-    return 'O'.light_red if used_color == 'R'
-    return 'O'.light_green if used_color == 'G'
-    return 'O'.light_blue if used_color == 'B'
-    return 'O'.light_yellow if used_color == 'Y'
-  end
 end
