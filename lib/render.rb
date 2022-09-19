@@ -30,4 +30,9 @@ class Render
     puts "#{player2.name}: #{player2.rol}".yellow
     puts '--------------------------------------------'.yellow
   end
+
+  def ask_for_code(name)
+    puts name.yellow
+    puts 'please enter the code:'.yellow
+  end
 end
