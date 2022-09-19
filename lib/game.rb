@@ -5,6 +5,8 @@ module Mastermind
       @player2 = nil
       @encrypter = nil
       @hacker = nil
+      @current_set = nil
+      @sets = []
     end
 
     def setup_game
@@ -22,6 +24,12 @@ module Mastermind
 
       print_title
       print_rols
+      new_set
+    end
+
+    def new_set
+      @current_set = Set.new
+      @sets << @current_set
     end
 
     private
