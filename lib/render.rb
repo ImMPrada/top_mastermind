@@ -32,7 +32,24 @@ class Render
   end
 
   def ask_for_code(name)
+    puts "\n"
     puts name.yellow
     puts 'please enter the code:'.yellow
+  end
+
+  def render_code(code)
+    code_arr = code.split('')
+    code_colors = code_arr.map { |color| transpile_color(color) }
+
+    puts(code_colors.join(' '))
+  end
+
+  private
+
+  def transpile_color(used_color)
+    return 'O'.red if used_color == 'R'
+    return 'O'.green if used_color == 'G'
+    return 'O'.blue if used_color == 'B'
+    return 'O'.yellow if used_color == 'Y'
   end
 end
