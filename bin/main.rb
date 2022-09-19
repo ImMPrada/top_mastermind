@@ -1,5 +1,6 @@
 require 'colorize'
 require 'tty-font'
+require 'byebug'
 
 require_relative '../lib/render'
 require_relative '../lib/player'
