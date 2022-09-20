@@ -47,19 +47,23 @@ class Set
     guess_code = @guess_code.split('')
     target_code = @target_code.split('')
 
-    guess_code.each_with_index do |color, index|
-      next unless target_code[index] == color
-
-      @loop_result[index] = '+'
-      target_code[index] = nil
-      guess_code[index] = nil
-    end
+    check_for_coincidences(guess_code, target_code)
 
     guess_code.each_with_index do |color, index|
       match_index = target_code.index(color)
       next unless match_index && color
 
       @loop_result[index] = '*'
+      target_code[index] = nil
+      guess_code[index] = nil
+    end
+  end
+
+  def check_for_coincidences(guess_code, target_code)
+    guess_code.each_with_index do |color, index|
+      next unless target_code[index] == color
+
+      @loop_result[index] = '+'
       target_code[index] = nil
       guess_code[index] = nil
     end
