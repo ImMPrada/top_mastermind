@@ -1,4 +1,7 @@
 class Set
+  WINNING_CODE = '+ + + + +'.freeze
+  INITIAL_CODE = %w[· · · · ·].freeze
+
   def initialize(player1, player2)
     @player1 = player1
     @player2 = player2
@@ -22,28 +25,44 @@ class Set
   end
 
   def run_set_loop
+    @turn += 1
     @guess_code = nil
+    @loop_result = nil
     try_guess
 
-    @turn += 1
+    run_set_loop unless @loop_result.join(' ') == WINNING_CODE || @turn == 12
   end
 
   private
 
   def try_guess
     @guess_code = set_code
-    check_result = check_guess
-    @board.update_board(transpile_code(@guess_code), check_result)
+    check_guess
+    @board.update_board(transpile_code(@guess_code), @loop_result.join(' '))
   end
 
   def check_guess
-    success_code = %w[· · · · ·]
+    @loop_result = INITIAL_CODE.dup
 
-    @target_code.split('').each_with_index do |letter, index|
-      success_code[index] = '+'.green if letter == @guess_code[index]
+    guess_code = @guess_code.split('')
+    target_code = @target_code.split('')
+
+    guess_code.each_with_index do |color, index|
+      next unless target_code[index] == color
+
+      @loop_result[index] = '+'
+      target_code[index] = nil
+      guess_code[index] = nil
     end
 
-    success_code.join(' ')
+    guess_code.each_with_index do |color, index|
+      match_index = target_code.index(color)
+      next unless match_index && color
+
+      @loop_result[index] = '*'
+      target_code[index] = nil
+      guess_code[index] = nil
+    end
   end
 
   def set_code
