@@ -9,21 +9,14 @@ class Game
     @render = Render.new
   end
 
-  def setup_game
-    @render.print_start_head
-    setup_player1
-    @render.print_start_head
-    setup_player2
-
-    change_rols
+  def start
+    setup_game
+    start_game_loop
   end
 
-  def change_rols
-    change_encrypter
-    change_hacker
+  private
 
-    @render.print_title
-    @render.print_roles(@player1, @player2)
+  def start_game_loop
     new_set
   end
 
@@ -32,23 +25,34 @@ class Game
     @current_set.set_roles(@encrypter, @hacker)
     @sets << @current_set
 
-    start_game
+    update_game_loop if @current_set.start
   end
 
-  def start_game
-    @current_set.start
+  def setup_game
+    @render.print_start_head
+    setup_player1
+    @render.print_start_head
+    setup_player2
+
+    change_roles
   end
 
-  private
+  def change_roles
+    change_encrypter
+    change_hacker
+
+    @render.print_title
+    @render.print_roles(@player1, @player2)
+  end
 
   def setup_player1
-    @render.print_player_setup_instructions('PLAYER 1')
+    @render.print_name_question('PLAYER 1')
     @player1 = Player.new(gets.chomp.upcase)
     @player1.setup
   end
 
   def setup_player2
-    @render.print_player_setup_instructions('PLAYER 2')
+    @render.print_name_question('PLAYER 2')
     @player2 = Player.new(gets.chomp.upcase)
     @player2.setup
   end
