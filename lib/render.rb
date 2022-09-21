@@ -65,5 +65,14 @@ class Render
     board.each { |line| puts line }
   end
 
+  def print_end_game(player, score)
+    puts '--------------------------------------------'.yellow
+    puts 'SET OVER'.yellow
+    puts '--------------------------------------------'.yellow
+    puts player.name.yellow
+    puts "Score: #{score}".yellow
+    puts '--------------------------------------------'.yellow
+  end
+
   private
 end
