@@ -24,16 +24,17 @@ class Set
     run_set_loop
   end
 
+  private
+
   def run_set_loop
     @turn += 1
     @guess_code = nil
-    @loop_result = nil
     try_guess
 
-    run_set_loop unless @loop_result.join(' ') == WINNING_CODE || @turn == 12
-  end
+    return :set_over if @loop_result.join(' ') == WINNING_CODE || @turn == 12
 
-  private
+    run_set_loop
+  end
 
   def try_guess
     @guess_code = set_code
