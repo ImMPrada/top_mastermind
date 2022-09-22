@@ -32,8 +32,8 @@ class Render
   def print_roles(player1, player2)
     puts '--------------------------------------------'.yellow
     puts 'ROLES:'.yellow
-    puts "#{player1.name} -- #{player1.rol}".light_green
-    puts "#{player2.name} -- #{player2.rol}".light_green
+    puts "#{player1.name} -- #{player1.rol} - score: #{player1.score}".light_green
+    puts "#{player2.name} -- #{player2.rol} - score: #{player2.score}".light_green
     puts '--------------------------------------------'.yellow
     puts "\n"
   end
@@ -65,14 +65,14 @@ class Render
     board.each { |line| puts line }
   end
 
-  def print_end_game(player, score)
+  def print_end_set(player, score)
     puts '--------------------------------------------'.yellow
     puts 'SET OVER'.yellow
     puts '--------------------------------------------'.yellow
     puts player.name.yellow
     puts "Score: #{score}".yellow
     puts '--------------------------------------------'.yellow
+    puts '(Press enter to continue)'.cyan
+    gets.chomp
   end
-
-  private
 end
