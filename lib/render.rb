@@ -75,4 +75,23 @@ class Render
     puts '(Press enter to continue)'.cyan
     gets.chomp
   end
+
+  def print_end_game(winner, loser)
+    print_title
+    puts '--------------------------------------------'.yellow
+    puts 'GAME OVER'.green
+    puts '--------------------------------------------'.yellow
+    puts "#{winner.name} won! score: #{winner.score}".yellow
+    puts '--------------------------------------------'.yellow
+    puts "#{loser.name} won! score: #{loser.score}".yellow
+  end
+
+  def print_end_game_draw
+    print_title
+    puts '--------------------------------------------'.yellow
+    puts 'GAME OVER'.green
+    puts '--------------------------------------------'.yellow
+    puts 'DRAW!'.green
+    puts '--------------------------------------------'.yellow
+  end
 end
