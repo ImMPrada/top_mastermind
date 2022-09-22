@@ -17,6 +17,4 @@ class Board
 
     @render.print_board(@board)
   end
-
-  private
 end
