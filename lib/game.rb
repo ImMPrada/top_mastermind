@@ -1,5 +1,5 @@
 class Game
-  def initialize
+  def initialize(score_limit = 6)
     @player1 = nil
     @player2 = nil
     @encrypter = nil
@@ -7,6 +7,8 @@ class Game
     @current_set = nil
     @sets = []
     @render = Render.new
+    @score_limit = score_limit
+    @is_pair = true
   end
 
   def start
@@ -21,11 +23,24 @@ class Game
   end
 
   def new_set
+    @is_pair = !@is_pair
     @current_set = Set.new(@player1, @player2)
     @current_set.set_roles(@encrypter, @hacker)
     @sets << @current_set
 
-    update_game_loop if @current_set.start
+    next_set if @current_set.start
+  end
+
+  def next_set
+    @encrypter.add_score(@current_set.turn)
+    return end_game if @encrypter.score >= @score_limit && @is_pair
+
+    change_roles
+    new_set
+  end
+
+  def end_game
+    @render.print_end_game(@encrypter, @hacker)
   end
 
   def setup_game
@@ -38,6 +53,7 @@ class Game
   end
 
   def change_roles
+    puts 'Changing roles...'
     change_encrypter
     change_hacker
 
@@ -55,6 +71,7 @@ class Game
     @render.print_name_question('PLAYER 2')
     @player2 = Player.new(gets.chomp.upcase)
     @player2.setup
+    @is_pair = true
   end
 
   def change_encrypter
