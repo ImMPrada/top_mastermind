@@ -46,7 +46,7 @@ class Set
   def try_guess
     @guess_code = enter_code(@hacker)
     check_guess
-    @board.update_board(transpile_code(@guess_code), @loop_result.join(' '))
+    @board.update_board(colorize_code(@guess_code), @loop_result.join(' '))
   end
 
   def check_guess
@@ -90,7 +90,7 @@ class Set
       enter_code(player)
     end
 
-    @render.render_code(transpile_code(code))
+    @render.render_code(colorize_code(code))
     code_confirmed = @render.confirm
     enter_code(player) unless code_confirmed
 
@@ -104,7 +104,7 @@ class Set
     { message: '', status_ok: true }
   end
 
-  def transpile_code(code)
+  def colorize_code(code)
     code_arr = code.split('')
     code_colors = code_arr.map { |color| transpile_color(color) }
 
