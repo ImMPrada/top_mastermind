@@ -18,7 +18,7 @@ class Set
   end
 
   def start
-    @target_code = set_code
+    @target_code = enter_code(@encrypter)
     @render.print_title if @target_code
     @render.print_roles(@player1, @player2)
     @board.print_blank_board
@@ -44,7 +44,7 @@ class Set
   end
 
   def try_guess
-    @guess_code = set_code
+    @guess_code = enter_code(@hacker)
     check_guess
     @board.update_board(transpile_code(@guess_code), @loop_result.join(' '))
   end
@@ -80,20 +80,19 @@ class Set
     end
   end
 
-  def set_code
-    @render.ask_for_code(@hacker.name)
-    code = gets.chomp.upcase
+  def enter_code(player)
+    @render.ask_for_code(player.name)
+    code = nil || gets.chomp.upcase
     check = check_code(code)
 
     unless check[:status_ok]
       @render.render_error_message(check[:message])
-      gets.chomp
-      set_code
+      enter_code(player)
     end
 
     @render.render_code(transpile_code(code))
     code_confirmed = @render.confirm
-    set_code unless code_confirmed
+    enter_code(player) unless code_confirmed
 
     code
   end
