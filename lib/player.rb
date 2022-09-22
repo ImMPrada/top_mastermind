@@ -5,15 +5,19 @@ class Player
     @name = name
     @rol = nil
     @score = 0
+    @render = Render.new
   end
 
   def setup
-    puts 'Please enter your PIN:'.yellow
+    @render.print_pin_question
     @pin = gets.chomp
-    system 'clear'
   end
 
   def change_rol(rol)
     @rol = rol
+  end
+
+  def add_score(score)
+    @score += score
   end
 end
