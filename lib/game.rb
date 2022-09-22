@@ -33,14 +33,31 @@ class Game
 
   def next_set
     @encrypter.add_score(@current_set.turn)
-    return end_game if @encrypter.score >= @score_limit && @is_pair
+    return end_game if target_score_reached? && @is_pair
 
     change_roles
     new_set
   end
 
   def end_game
-    @render.print_end_game(@encrypter, @hacker)
+    winner = hwo_won
+
+    return @render.print_end_game_draw if winner == :draw
+
+    return @render.print_end_game(@player1, @player2) if winner == @player1
+
+    @render.print_end_game(@player2, @player1)
+  end
+
+  def target_score_reached?
+    @player1.score >= @score_limit || @player2.score >= @score_limit
+  end
+
+  def hwo_won
+    return @player1 if @player1.score > @player2.score
+    return @player2 if @player2.score > @player1.score
+
+    :draw
   end
 
   def setup_game
