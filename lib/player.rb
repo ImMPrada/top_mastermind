@@ -13,7 +13,7 @@ class Player
     @pin = gets.chomp
   end
 
-  def change_rol(role)
+  def change_role(role)
     @role = role
   end
 
