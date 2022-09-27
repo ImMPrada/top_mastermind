@@ -4,8 +4,8 @@ class Game
     @player2 = nil
     @encrypter = nil
     @hacker = nil
-    @current_set = nil
-    @sets = []
+    @current_round = nil
+    @rounds = []
     @render = Render.new
     @score_limit = score_limit
   end
@@ -22,19 +22,19 @@ class Game
   end
 
   def even_round?
-    @sets.size.even?
+    @rounds.size.even?
   end
 
   def new_set
-    @current_set = Set.new(@player1, @player2)
-    @current_set.set_roles(@encrypter, @hacker)
-    @sets << @current_set
+    @current_round = Round.new(@player1, @player2)
+    @current_round.set_roles(@encrypter, @hacker)
+    @rounds << @current_round
 
-    next_set if @current_set.start
+    next_set if @current_round.start
   end
 
   def next_set
-    @encrypter.add_score(@current_set.turn)
+    @encrypter.add_score(@current_round.turn)
     return end_game if target_score_reached? && even_round?
 
     change_roles

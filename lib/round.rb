@@ -1,4 +1,4 @@
-class Set
+class Round
   WINNING_CODE = '+ + + + +'.freeze
   INITIAL_CODE = %w[· · · · ·].freeze
 
@@ -23,24 +23,24 @@ class Set
     @render.print_roles(@player1, @player2)
     @board.print_blank_board
 
-    end_set if run_set_loop == :set_over
+    end_round if run_round_loop == :set_over
   end
 
   private
 
-  def end_set
-    @render.print_end_set(@encrypter, @turn)
+  def end_round
+    @render.print_end_round(@encrypter, @turn)
     true
   end
 
-  def run_set_loop
+  def run_round_loop
     @guess_code = nil
     try_guess
 
     return :set_over if @loop_result.join(' ') == WINNING_CODE || @turn == 12
 
     @turn += 1
-    run_set_loop
+    run_round_loop
   end
 
   def try_guess
