@@ -65,7 +65,7 @@ class Render
     board.each { |line| puts line }
   end
 
-  def print_end_set(player, score)
+  def print_end_round(player, score)
     puts '--------------------------------------------'.yellow
     puts 'SET OVER'.yellow
     puts '--------------------------------------------'.yellow

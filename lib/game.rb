@@ -18,27 +18,27 @@ class Game
   private
 
   def start_game_loop
-    new_set
+    new_round
   end
 
   def even_round?
     @rounds.size.even?
   end
 
-  def new_set
+  def new_round
     @current_round = Round.new(@player1, @player2)
     @current_round.set_roles(@encrypter, @hacker)
     @rounds << @current_round
 
-    next_set if @current_round.start
+    next_round if @current_round.start
   end
 
-  def next_set
+  def next_round
     @encrypter.add_score(@current_round.turn)
     return end_game if target_score_reached? && even_round?
 
     change_roles
-    new_set
+    new_round
   end
 
   def end_game
