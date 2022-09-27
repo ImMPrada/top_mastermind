@@ -32,8 +32,8 @@ class Render
   def print_roles(player1, player2)
     puts '--------------------------------------------'.yellow
     puts 'ROLES:'.yellow
-    puts "#{player1.name} -- #{player1.rol} - score: #{player1.score}".light_green
-    puts "#{player2.name} -- #{player2.rol} - score: #{player2.score}".light_green
+    puts "#{player1.name} -- #{player1.role} - score: #{player1.score}".light_green
+    puts "#{player2.name} -- #{player2.role} - score: #{player2.score}".light_green
     puts '--------------------------------------------'.yellow
     puts "\n"
   end
