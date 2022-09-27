@@ -83,7 +83,7 @@ class Render
     puts '--------------------------------------------'.yellow
     puts "#{winner.name} won! score: #{winner.score}".yellow
     puts '--------------------------------------------'.yellow
-    puts "#{loser.name} won! score: #{loser.score}".yellow
+    puts "#{loser.name}, score: #{loser.score}".yellow
   end
 
   def print_end_game_draw

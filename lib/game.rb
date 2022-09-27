@@ -46,9 +46,9 @@ class Game
 
     case winner
     when @player1
-      @render.winner(@player1, @player2)
+      @render.print_end_game(@player1, @player2)
     when @player2
-      @render.winner(@player2, @player1)
+      @render.print_end_game(@player2, @player1)
     else
       @render.print_end_game_draw
     end

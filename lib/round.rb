@@ -112,9 +112,15 @@ class Round
   end
 
   def transpile_color(used_color)
-    return 'O'.light_red if used_color == 'R'
-    return 'O'.light_green if used_color == 'G'
-    return 'O'.light_blue if used_color == 'B'
-    return 'O'.light_yellow if used_color == 'Y'
+    case used_color
+    when 'R'
+      'O'.light_red
+    when 'G'
+      'O'.light_green
+    when 'B'
+      'O'.light_blue
+    when 'Y'
+      'O'.light_yellow
+    end
   end
 end
