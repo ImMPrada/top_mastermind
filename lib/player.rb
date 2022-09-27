@@ -1,9 +1,9 @@
 class Player
-  attr_reader :name, :rol, :score
+  attr_reader :name, :role, :score
 
   def initialize(name)
     @name = name
-    @rol = nil
+    @role = nil
     @score = 0
     @render = Render.new
   end
@@ -13,8 +13,8 @@ class Player
     @pin = gets.chomp
   end
 
-  def change_rol(rol)
-    @rol = rol
+  def change_rol(role)
+    @role = role
   end
 
   def add_score(score)
